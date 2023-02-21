@@ -41,6 +41,8 @@
 
   <table class="table">
     <thead>
+      <h1 *ngIf="!isResultLoaded">Loading............</h1>
+
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Name</th>
@@ -49,11 +51,31 @@
       </tr>
     </thead>
     <tbody>
+      <tr *ngFor="let EmployeeItem of EmployeeArray"></tr>
+
       <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <th scope="row">{{ EmployeeItem.id }}</th>
+        <td>{{ EmployeeItem.name | uppercase }}</td>
+        <td>{{ EmployeeItem.address }}</td>
+        <td>{{ EmployeeItem.mobile }}</td>
+
+        <td>
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="setUpdate(EmployeeItem)"
+          >
+            Edit
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="setDelete(EmployeeItem)"
+          >
+            Delete
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
